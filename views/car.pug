@@ -5,7 +5,7 @@ block content
     - let forms = results
     div(class="row")
       each form,index in forms
-        div(class = "col-sm-2 bg-success" onclick=`buy(${index})`) #{form.manufacturer}
+        div(class = "col-sm-2 bg-success" onclick=`buy(${index})`) #{form.manufacture}
         div(class = "col-sm-2 bg-success" onclick=`buy(${index})`) #{form.model}
         div(class = "col-sm-2 bg-success" onclick=`buy(${index})`) #{form.price}
         hr

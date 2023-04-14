@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var car = require("./models/car");
 
 require('dotenv').config();
 const connectionString =
@@ -19,6 +20,7 @@ var usersRouter = require('./routes/users');
 var carRouter = require('./routes/car');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -37,6 +39,42 @@ app.use('/users', usersRouter);
 app.use('/car', carRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
+
+async function recreateDB(){
+  // Delete everything
+  await car.deleteMany();
+  let instance1 = new 
+ car({manufacture:"benz", model:"Gle-320-d", 
+ price:129000});
+   
+ instance1.save().then( () => {
+   console.log('First object saved');
+ }).catch( (e) => {
+   console.log('There was an error', e.message);
+ });
+ let instance2 = new 
+ car({manufacture:"audi", model:"A4", 
+ price:58999});
+   
+ instance2.save().then( () => {
+   console.log('Second object saved');
+ }).catch( (e) => {
+   console.log('There was an error', e.message);
+ });
+ let instance3 = new 
+ car({manufacture:"toyota", model:"corala", 
+ price:50000});
+   
+ instance3.save().then( () => {
+   console.log('Third object saved');
+ }).catch( (e) => {
+   console.log('There was an error', e.message);
+ });
+ }
+ let reseed = true;
+ if (reseed) {recreateDB();}
+ 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,5 +93,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-
