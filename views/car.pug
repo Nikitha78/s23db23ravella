@@ -4,10 +4,10 @@ block content
     h1= title
     - let forms = results
     div(class="row")
-      each form,index in forms
-        div(class = "col-sm-2 bg-success" onclick=`buy(${index})`) #{form.manufacture}
-        div(class = "col-sm-2 bg-success" onclick=`buy(${index})`) #{form.model}
-        div(class = "col-sm-2 bg-success" onclick=`buy(${index})`) #{form.price}
+      each value,index in forms
+        div(class = "col-sm-2 bg-danger" onclick=`buy(${index})`) #{value.car_name}
+        div(class = "col-sm-2 bg-danger" onclick=`buy(${index})`) #{value.car_model}
+        div(class = "col-sm-2 bg-danger" onclick=`buy(${index})`) #{value.car_price}
         hr
     script.     
       function buy(itemNo)

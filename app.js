@@ -45,8 +45,8 @@ async function recreateDB(){
   // Delete everything
   await car.deleteMany();
   let instance1 = new 
- car({manufacture:"benz", model:"Gle-320-d", 
- price:129000});
+ car({car_name:"suzuki", car_model:"fghjkd", 
+ car_price:79732});
    
  instance1.save().then( () => {
    console.log('First object saved');
@@ -54,8 +54,8 @@ async function recreateDB(){
    console.log('There was an error', e.message);
  });
  let instance2 = new 
- car({manufacture:"audi", model:"A4", 
- price:58999});
+ car({car_name:"tata", car_model:"B5", 
+ car_price:999999});
    
  instance2.save().then( () => {
    console.log('Second object saved');
@@ -63,8 +63,8 @@ async function recreateDB(){
    console.log('There was an error', e.message);
  });
  let instance3 = new 
- car({manufacture:"toyota", model:"corala", 
- price:50000});
+ car({car_name:"Tesla", car_model:"Automatic", 
+ car_price:9999999});
    
  instance3.save().then( () => {
    console.log('Third object saved');
