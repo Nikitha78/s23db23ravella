@@ -1,16 +1,26 @@
 extends layout
+
 block content
-  div(class="container-fluid")
-    h1= title
-    - let forms = results
-    div(class="row")
-      each value,index in forms
-        div(class = "col-sm-2 bg-danger" onclick=`buy(${index})`) #{value.car_name}
-        div(class = "col-sm-2 bg-danger" onclick=`buy(${index})`) #{value.car_model}
-        div(class = "col-sm-2 bg-danger" onclick=`buy(${index})`) #{value.car_price}
-        hr
-    script.     
-      function buy(itemNo)
-      {
-        alert(`You purchased Item ${itemNo+1}`)
-      }
+  h1= title
+  //- - let items = ['car_type','size','cost']
+  - let items = results;
+  - let o;
+  script.
+    function buy(x){
+      alert('purchased item ' + x)
+   } 
+  div(class='container-fluid')
+    div(class='row m-1')
+    div(class="row row-cols-1 row-cols-sm-4 g-6")
+      each item,index in items
+        - let destination = `dispatch(\"/car/update?id=${item._id}\")`
+      
+        div(class="card text-white bg-dark mb-3" class='col' class='card' class='card-body' class='card-text' onclick='buy('+index+')') Item #{item.car_name}(#{item.car_model})is #{item.car_price} 
+
+          <br>
+          button.btn( class="btn-success ml-1", onclick= destination) Update
+
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }

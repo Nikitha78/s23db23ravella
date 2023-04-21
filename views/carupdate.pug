@@ -1,31 +1,31 @@
 extends layout
 
 block content
-    h1= title
+    h1(class='bonus')= title
 
     if (toShow == null)
         h2 No instance to update
     else
         - let Carid = toShow._id
-        - let name = toShow.name
-        - let price = toShow.price
-        - let model = toShow.model
+        - let car_name = toShow.car_name
+        - let car_model = toShow.car_model
+        - let car_price = toShow.car_price
 
 
           div.row(class='CarAttr mb-2')
             div.mr-1 ID is
             div #{Carid}
         - let actionid = "/resource/cars/"+Carid
-        form(id='CarForm', action= actionid, method="PUT")
+        form(id='CarForm', action= actionid, method="PUT" class='carupdate')
           div.form-group
-            label.CarAttr(for='name') Car Name
-            input#name(type='text' name='name', value= name )
+            label.CarAttr(for='car_name') Car name
+            input#car_name(type='text' car_name='car_name', value= car_name )
           div.form-group
-            label.CarAttr(for='price') Car price
-            input#price(type='number' name='price', value= price )
+            label.CarAttr(for='car_model') Car car_model
+            input#car_model(type='text' car_name='car_model', value= car_model )
           div.form-group
-            label.CarAttr(for='model') Car model
-            input#model(type='text' name='model', value= model )
+            label.CarAttr(for='car_price') Car car_price
+            input#car_price(type='number' car_name='car_price', value= car_price )
           input(type="submit")
         script.
           document.forms['CarForm'].addEventListener('submit', (event) => {

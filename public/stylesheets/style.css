@@ -11,3 +11,11 @@ a {
   width: 120px;
   }
   
+  .carupdate{
+    color: blueviolet;
+  }
+  .bonus{
+    background-color: green;
+    font-style: italic;
+    font-size: medium;
+  }

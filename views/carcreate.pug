@@ -4,14 +4,14 @@ block content
     form(id='CarForm' action="/resource/cars" method="POST")
     
         div.form-group
-            label.carAttr(for='name') Car type
-            input#name(type='text' name='name')
+            label.carAttr(for='car_name') Car type
+            input#car_name(type='text' name='car_name')
         div.form-group
-            label.carAttr(for='model') Car model
-            input#model(type='text' name='model')
+            label.carAttr(for='car_price') Car car_price
+            input#car_price(type='number' name='car_price')
         div.form-group
-            label.carAttr(for='price') Car price
-            input#price(type='number' name='price')
+            label.carAttr(for='car_model') Car price
+            input#car_model(type='text' name='car_model')
         input(type="submit")
     script.
       document.forms['CarForm'].addEventListener('submit', (event) => {
