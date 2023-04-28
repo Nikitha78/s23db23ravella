@@ -4,6 +4,8 @@ block content
   h1= title
   //- - let items = ['car_type','size','cost']
   - let items = results;
+  - let destination = `dispatch(\"/car/create\")`
+  button.btn( class="btn-primary ml-1", onclick= destination) Create
   - let o;
   script.
     function buy(x){
@@ -14,11 +16,15 @@ block content
     div(class="row row-cols-1 row-cols-sm-4 g-6")
       each item,index in items
         - let destination = `dispatch(\"/car/update?id=${item._id}\")`
+        - let destinationremove = `dispatch(\"/car/delete?id=${item._id}\")`
+        - let destinationdetail = `dispatch(\"/car/detail?id=${item._id}\")`
       
         div(class="card text-white bg-dark mb-3" class='col' class='card' class='card-body' class='card-text' onclick='buy('+index+')') Item #{item.car_name}(#{item.car_model})is #{item.car_price} 
 
           <br>
           button.btn( class="btn-success ml-1", onclick= destination) Update
+          button.btn( class="btn-primary ml-1", onclick= destinationremove) Delete
+          button.btn( class="btn-primary ml-1", onclick= destinationdetail) Detail
 
   script.
     function dispatch(path){

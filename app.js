@@ -8,7 +8,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(
   function(username, password, done) {
-  Account.findOne({ username: username }, function (err, user) {
+  Account.findOne({ username: username })
+  .then(function (user){
   if (err) { return done(err); }
   if (!user) {
   return done(null, false, { message: 'Incorrect username.' });
@@ -17,8 +18,12 @@ passport.use(new LocalStrategy(
   return done(null, false, { message: 'Incorrect password.' });
   }
   return done(null, user);
-  });
-  }));
+  })
+  .catch(function(err){
+  return done(err)
+  })
+  })
+ )
   
    var Account =require(('./models/account'));
 passport.use(new LocalStrategy(Account.authenticate()));
@@ -72,8 +77,8 @@ async function recreateDB(){
   // Delete everything
   await car.deleteMany();
   let instance1 = new 
- car({car_name:"suzuki", car_model:"fghjkd", 
- car_price:79732});
+ car({car_name:"suzuki", car_model:"f", 
+ car_price:792});
    
  instance1.save().then( () => {
    console.log('First object saved');
@@ -81,8 +86,8 @@ async function recreateDB(){
    console.log('There was an error', e.message);
  });
  let instance2 = new 
- car({car_name:"tata", car_model:"B5", 
- car_price:999999});
+ car({car_name:"tata", car_model:"B", 
+ car_price:999});
    
  instance2.save().then( () => {
    console.log('Second object saved');
@@ -91,7 +96,7 @@ async function recreateDB(){
  });
  let instance3 = new 
  car({car_name:"Tesla", car_model:"Automatic", 
- car_price:9999999});
+ car_price:99});
    
  instance3.save().then( () => {
    console.log('Third object saved');
